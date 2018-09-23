@@ -1,3 +1,5 @@
+import sun.misc.JavaLangAccess;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -101,7 +103,7 @@ public class Demarrage extends JFrame implements ActionListener {
                             pb.setValue(currentValue);
                         }
                     });
-                    java.lang.Thread.sleep(10);
+                    Thread.sleep(10);
                 } catch (InterruptedException exc) {
                     JOptionPane.showMessageDialog(null, "Erreur lors du chargement du compte");
                 }
@@ -130,7 +132,7 @@ public class Demarrage extends JFrame implements ActionListener {
 
     }
 
-    public void frameDispositionBateaux_Admin(JFrame secondFrame){
+    public void frameDispositionBateaux_Admin(final JFrame secondFrame){
         secondFrame.setTitle("Initialisation - Admin");
         secondFrame.setSize(650, 500);
 
@@ -158,7 +160,7 @@ public class Demarrage extends JFrame implements ActionListener {
         JPanel contentGrille = new JPanel();
         panelHaut.setLayout(new BorderLayout());
 
-        contentGrille.setLayout(new GridLayout(7, 7));//on définit la taille de la grille de 7 sur 7
+        contentGrille.setLayout(new GridLayout(10, 10));//on définit la taille de la grille de 7 sur 7
         contentGrille.setPreferredSize(new Dimension(20,20));
 
         creationGrille(contentGrille);
@@ -191,6 +193,11 @@ public class Demarrage extends JFrame implements ActionListener {
         valOrd.setText("    ");
         panelCentre.add(titreOrd);
         panelCentre.add(valOrd);
+
+        JLabel orientation = new JLabel("Verticale :");
+        JCheckBox box_verticale = new JCheckBox();
+        panelCentre.add(orientation);
+        panelCentre.add(box_verticale);
 
         this.validationBoat = new JButton("Valider");
         panelCentre.add(validationBoat);
@@ -264,11 +271,14 @@ public class Demarrage extends JFrame implements ActionListener {
     }
 
     public static void creationGrille(JPanel contentGrille){
-        JPanel cell[][]= new JPanel[6][6];
+        JPanel cell[][]= new JPanel[10][10];
+
         for(int i=0; i<cell.length; i++){
             for(int j=0; j<cell.length; j++){
+                JLabel lettre = new JLabel("A");
                 cell[i][j]= new JPanel();
                 cell[i][j].setSize(new Dimension(10, 10));
+                cell[i][j].add(lettre);
                 if ((i + j) % 2 == 0) {
                     cell[i][j].setBackground(Color.gray);
                 } else {
@@ -279,8 +289,6 @@ public class Demarrage extends JFrame implements ActionListener {
         }
     }
 
-
-    @Override
     public void actionPerformed(ActionEvent e) {
 
         /*Thread t = new Thread() {
@@ -310,7 +318,7 @@ public class Demarrage extends JFrame implements ActionListener {
 
 
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
 
         // Astuce pour avoir le style visuel du systeme hôte
         try {
@@ -319,7 +327,7 @@ public class Demarrage extends JFrame implements ActionListener {
             e.printStackTrace();
         }
         instance = new Demarrage();
-    }
+    }*/
 
     /*// Retourne l'instance de Demarrage
     public static Demarrage getInstance() {
