@@ -49,8 +49,8 @@ public class Carte2 {
         String s="";
         //s+="1 2 3 4 5 6 7 8 9 10";
         for (int i = 0; i < 10; i++) {
-            s+= "\n";
-            s+= i+" ";
+           // s+= "\n";
+           // s+= i+" ";
             for (int j = 0; j < 10; j++) {
 
                 s+=tab[i][j];

@@ -2,12 +2,16 @@
 import esiea.*;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Main {
     private static Demarrage instance;
 
     public static void main(String[] args) {
-        Flotte flotte=new Flotte();
+
+
+       /* Flotte flotte=new Flotte();
         Carte2 carte = new Carte2();
         Croisseur c=new Croisseur(2, 3, true);
         Escorteur e=new Escorteur(5, 8, false);
@@ -29,7 +33,7 @@ public class Main {
         flotte.coup(8,5);
         flotte.coup(8,6);
         carte.UpdateCarte(flotte);
-        System.out.println(carte);
+        System.out.println(carte);*/
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception em) {

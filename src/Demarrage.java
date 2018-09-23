@@ -1,11 +1,13 @@
-import sun.misc.JavaLangAccess;
+import esiea.Bateau;
+import esiea.Carte2;
+import esiea.Croisseur;
+import esiea.Flotte;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
-import java.lang.*;
+import java.util.ArrayList;
 
 
 public class Demarrage extends JFrame implements ActionListener {
@@ -32,10 +34,18 @@ public class Demarrage extends JFrame implements ActionListener {
     private String username = null;
     private String password = null;
 
+    private String typeBateau = null;
+    private int saisieAbs = 0;
+    private int saisieOrd = 0;
+    private boolean isHorizontale = true;
+    private Flotte flotte =new Flotte();
+    private Carte2 carte  = new Carte2();
+
 
 
     public Demarrage() {
-
+        //Flotte flotte=new Flotte();
+        //Carte2 carte = new Carte2();
         launcherFrame.setTitle("Launcher");
         launcherFrame.setSize(850, 500);
         launcherFrame.setUndecorated(true); //Cacher les contours de la fenêtre
@@ -130,9 +140,13 @@ public class Demarrage extends JFrame implements ActionListener {
             launcherFrame.setVisible(false);
         }
 
+
     }
 
-    public void frameDispositionBateaux_Admin(final JFrame secondFrame){
+    public void frameDispositionBateaux_Admin(JFrame secondFrame){
+
+
+
         secondFrame.setTitle("Initialisation - Admin");
         secondFrame.setSize(650, 500);
 
@@ -175,22 +189,23 @@ public class Demarrage extends JFrame implements ActionListener {
         JComboBox<String> boatLists = new JComboBox<>();
 
         boatLists.addItem("Porte-avion (5 cases)");
-        boatLists.addItem("Croiseur (4 cases)");
+        boatLists.addItem("Croiseur (3 cases)");
         boatLists.addItem("Contre-torpilleur (3 cases)");
         boatLists.addItem("Sous-marin (3 cases)");
         boatLists.addItem("Torpilleur (2 cases)");
+
 
         panelCentre.add(boatLists);
 
         JLabel titreAbs = new JLabel("Abscisse : ");
         JTextField valAbs = new JTextField();
-        valAbs.setText("    ");
+        //valAbs.setText("    ");
         panelCentre.add(titreAbs);
         panelCentre.add(valAbs);
 
         JLabel titreOrd = new JLabel("Ordonnées : ");
         JTextField valOrd = new JTextField();
-        valOrd.setText("    ");
+        //valOrd.setText("    ");
         panelCentre.add(titreOrd);
         panelCentre.add(valOrd);
 
@@ -200,6 +215,28 @@ public class Demarrage extends JFrame implements ActionListener {
         panelCentre.add(box_verticale);
 
         this.validationBoat = new JButton("Valider");
+        validationBoat.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                typeBateau = boatLists.getSelectedItem().toString();
+                saisieAbs = Integer.parseInt(valAbs.getText());
+                saisieOrd = Integer.parseInt(valOrd.getText());
+                if(box_verticale.isSelected()){
+                    isHorizontale = false;
+                }
+
+                instantiationBateau(typeBateau,saisieAbs,saisieOrd,isHorizontale);
+
+
+
+
+
+                JOptionPane.showMessageDialog(null,typeBateau + saisieAbs + saisieOrd + isHorizontale);
+
+
+            }
+        });
         panelCentre.add(validationBoat);
 
         this.validationCarte = new JButton("Valider la disposition des bateaux");
@@ -208,12 +245,20 @@ public class Demarrage extends JFrame implements ActionListener {
             public void actionPerformed(ActionEvent e)
             {
 
+                flotte.coup(2,3);
+                flotte.coup(3,3);
+                flotte.coup(4,3);
+                carte.UpdateCarte(flotte);
+                System.out.println(carte);
                 frameJeu_Admin(jeu_Admin);
 
-                secondFrame.setVisible(false);
+
+
+                //secondFrame.setVisible(false);
 
             }
         });
+
 
 
         panelBas.add(validationCarte);
@@ -251,10 +296,10 @@ public class Demarrage extends JFrame implements ActionListener {
         JPanel contentGrille = new JPanel();
         panelHaut.setLayout(new BorderLayout());
 
-        contentGrille.setLayout(new GridLayout(7, 7));//on définit la taille de la grille de 7 sur 7
+        contentGrille.setLayout(new GridLayout(10, 10));//on définit la taille de la grille de 7 sur 7
         contentGrille.setPreferredSize(new Dimension(20,20));
 
-        creationGrille(contentGrille);
+        creationGrille_2(contentGrille);
         contentGrille.setBounds(150,150,150,150);
 
         panelHaut.add(contentGrille);
@@ -270,12 +315,46 @@ public class Demarrage extends JFrame implements ActionListener {
 
     }
 
-    public static void creationGrille(JPanel contentGrille){
+    public void creationGrille(JPanel contentGrille){
+
+
         JPanel cell[][]= new JPanel[10][10];
 
         for(int i=0; i<cell.length; i++){
             for(int j=0; j<cell.length; j++){
-                JLabel lettre = new JLabel("A");
+                JLabel lettre = new JLabel("*");
+                cell[i][j]= new JPanel();
+                cell[i][j].setSize(new Dimension(10, 10));
+                cell[i][j].add(lettre);
+                if ((i + j) % 2 == 0) {
+                    cell[i][j].setBackground(Color.gray);
+                } else {
+                    cell[i][j].setBackground(Color.white);
+                }
+                contentGrille.add(cell[i][j]);
+            }
+        }
+    }
+
+    public void creationGrille_2(JPanel contentGrille){
+
+
+        JPanel cell[][]= new JPanel[10][10];
+        String plateau = carte.toString();
+
+        int len = plateau.length();
+        String[] result = new String[len];
+
+        for(int a = 0; a < len; a++ ){
+            result[a] = plateau.substring(a,a+1);
+        }
+
+
+        for(int i=0; i<cell.length; i++){
+
+            for(int j=0; j<cell.length; j++){
+                //System.out.println((i+1)*(j+1));
+                JLabel lettre = new JLabel(result[(j*cell.length)+i]);
                 cell[i][j]= new JPanel();
                 cell[i][j].setSize(new Dimension(10, 10));
                 cell[i][j].add(lettre);
@@ -316,6 +395,13 @@ public class Demarrage extends JFrame implements ActionListener {
 
     }
 
+    public void instantiationBateau(String typeBateau,int x, int y, boolean h){
+        if(typeBateau.equals("Croiseur (3 cases)")){
+            Croisseur c=new Croisseur(x, y, h);
+            flotte.ajouterbateau(c);
+        }
+    }
+
 
 
     /*public static void main(String[] args) {
@@ -338,6 +424,8 @@ public class Demarrage extends JFrame implements ActionListener {
     public JProgressBar getProgressBar() {
         return pb;
     }*/
+
+
 
 
 
