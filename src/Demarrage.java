@@ -1,7 +1,4 @@
-import esiea.Bateau;
-import esiea.Carte2;
-import esiea.Croisseur;
-import esiea.Flotte;
+import esiea.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -402,9 +399,24 @@ public class Demarrage extends JFrame implements ActionListener {
     }
 
     public void instantiationBateau(String typeBateau,int x, int y, boolean h){
-        if(typeBateau.equals("Croiseur (3 cases)")){
-            Croisseur c=new Croisseur(x, y, h);
-            flotte.ajouterbateau(c);
+        switch (typeBateau) {
+            case "Croiseur (3 cases)":
+                Croisseur c=new Croisseur(x, y, h);
+                flotte.ajouterbateau(c);
+                break;
+            case "Porte-avion (4 cases)":
+                PorteAvion p=new PorteAvion(x, y, h);
+                flotte.ajouterbateau(p);
+                break;
+            case "Escorteur (2 cases)":
+                Escorteur e=new Escorteur(x, y, h);
+                flotte.ajouterbateau(e);
+                break;
+            case "Sous-marin (1 cases)":
+                SousMarin s=new SousMarin(x, y, h);
+                flotte.ajouterbateau(s);
+                break;
+
         }
     }
 
