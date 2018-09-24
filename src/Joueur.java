@@ -1,5 +1,3 @@
-package esiea;
-
 public class Joueur {
     private final String id;
     private int score;
