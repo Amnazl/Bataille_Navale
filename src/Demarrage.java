@@ -396,7 +396,7 @@ public class Demarrage extends JFrame implements ActionListener {
             System.exit(1);
         }
 
-    }
+    }      
 
     public void instantiationBateau(String typeBateau,int x, int y, boolean h){
         switch (typeBateau) {
