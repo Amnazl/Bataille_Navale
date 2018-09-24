@@ -12,18 +12,19 @@ public class Flotte {
 
 
     public void ajouterbateau(Bateau2 b) {
-        boolean isIt = false;
+        boolean compareCoor = false;
+        boolean SortCarte = false;
         if (!bateaux.contains(b)) {
             if (bateaux.size() == 0) {
                 bateaux.add(b);
             } else {
                 for (Object b2 : bateaux) {
-                   isIt= b.compareCoor((Bateau2)(b2));
-                   System.out.println("1 : "+isIt);
+                    compareCoor= b.compareCoor((Bateau2)(b2));
+                   System.out.println("1 : "+compareCoor);
                 }
-                isIt= b.sortDeLaCarte();
-                System.out.println("2 : "+isIt);
-                if(!(isIt)){
+                SortCarte= b.sortDeLaCarte();
+                System.out.println("2 : "+SortCarte);
+                if(compareCoor==false && SortCarte==false ){
                     System.out.println("ajouté");
                     bateaux.add(b);
                 }

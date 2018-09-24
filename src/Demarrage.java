@@ -204,8 +204,18 @@ public class Demarrage extends JFrame implements ActionListener {
                 if(box_verticale.isSelected()){
                     isHorizontale = false;
                 }
-
+                valAbs.setText("");
+                valOrd.setText("");
+                panelHaut.removeAll();
+                contentGrille.removeAll();
                 instantiationBateau(typeBateau,saisieAbs,saisieOrd,isHorizontale);
+                carte.UpdateCarte(flotte,true);
+                creationGrille_2(contentGrille);
+                panelHaut.add(contentGrille);
+                panelHaut.revalidate();
+                System.out.println(carte);
+
+
 
 
 
