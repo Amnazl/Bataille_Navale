@@ -241,16 +241,20 @@ public class Demarrage extends JFrame implements ActionListener {
 
         this.validationCarte = new JButton("Valider la disposition des bateaux");
         validationCarte.addActionListener(new ActionListener()
-        {
+        { 
             public void actionPerformed(ActionEvent e)
             {
 
                 flotte.coup(2,3);
                 flotte.coup(3,3);
                 flotte.coup(4,3);
+                flotte.coup(0,0);
+                flotte.coup(1,0);
+                flotte.coup(1,0);
                 carte.UpdateCarte(flotte);
                 System.out.println(carte);
                 frameJeu_Admin(jeu_Admin);
+                //Dc6E5Vxkd
 
 
 
@@ -354,7 +358,7 @@ public class Demarrage extends JFrame implements ActionListener {
 
             for(int j=0; j<cell.length; j++){
                 //System.out.println((i+1)*(j+1));
-                JLabel lettre = new JLabel(result[(j*cell.length)+i]);
+                JLabel lettre = new JLabel(result[(i*cell.length)+j]);
                 cell[i][j]= new JPanel();
                 cell[i][j].setSize(new Dimension(10, 10));
                 cell[i][j].add(lettre);
