@@ -19,8 +19,8 @@ public class Carte2 {
     public void UpdateCarte(Flotte f,boolean admin) {
         ArrayList<Bateau2> b = f.getAllBateau();
         for (Bateau2 bateau : b) {
-            for (int i = 0; i < 9; i++) {
-                for (int j = 0; j < 9; j++) {
+            for (int i = 0; i < 10; i++) {
+                for (int j = 0; j < 10; j++) {
                     if (bateau.getabcisse() == i && bateau.getordonnee() == j) {
                         bateau.estDetruit();
                         String[] res;

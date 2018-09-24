@@ -127,7 +127,7 @@ public class Bateau2 {
         for (int i = 0; i < coor.length; i++) {
 
             if (coor[i] == abcisse || coor[i] == ordonnee) {
-                System.out.println("test");
+
                 System.out.println("Impossible le bateau "+b.toString()+" est à cette position");
                 isIt = true;
                 break;

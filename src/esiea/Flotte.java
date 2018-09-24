@@ -20,7 +20,7 @@ public class Flotte {
             } else {
                 for (Object b2 : bateaux) {
                     compareCoor= b.compareCoor((Bateau2)(b2));
-                   System.out.println("1 : "+compareCoor);
+                    System.out.println("1 : "+compareCoor);
                 }
                 SortCarte= b.sortDeLaCarte();
                 System.out.println("2 : "+SortCarte);
