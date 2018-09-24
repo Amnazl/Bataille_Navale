@@ -6,27 +6,32 @@ public class Bateau2 {
 
     private int abcisse;
     private int ordonnee;
-    private String etat;
-
     private int coordonnee[];
-    private String etats[];
+    private String etats_client[];
+    private String etats_admin[];
     public Bateau2(int x, int y, boolean h,int taille) {
         this.coordonnee = new int[taille];
-        this.etats = new String[taille];
+        this.etats_client = new String[taille];
+        this.etats_admin = new String[taille];
         this.horizontal=h;
         this.abcisse = x;
         this.ordonnee = y;
+
         for(int t = 0; t<taille;t++){
             if(h){
-                etats[t]=".";
+                etats_admin[t]="X";
+                etats_client[t]=".";
                 coordonnee[t] = x+t;
 
             }else{
-                etats[t]=".";
+                etats_admin[t]="X";
+                etats_client[t]=".";
                 coordonnee[t] = y+t;
 
             }
         }
+
+
     }
 
 
@@ -34,10 +39,11 @@ public class Bateau2 {
         if(this.horizontal) {
             for (int c = 0; c < coordonnee.length; c++) {
                 if (coordonnee[c] == x && ordonnee == y) {
-                    if(etats[c].equals(".")){
-                        etats[c] = "T";
-                    }else if(etats[c].equals("T")){
-                        etats[c] = "T";
+                    if(etats_client[c].equals(".") || etats_admin[c].equals("X") ){
+                        etats_client[c] = "T";
+                        etats_admin[c] = "T";
+                    }else if(etats_client[c].equals("T")){
+                        etats_client[c] = "T";
                     }
 
                 }
@@ -45,10 +51,11 @@ public class Bateau2 {
         } else{
             for (int c = 0; c < coordonnee.length; c++) {
                 if (abcisse == x && coordonnee[c] == y) {
-                    if(etats[c].equals(".")){
-                        etats[c] = "T";
-                    }else if(etats[c].equals("T")){
-                        etats[c] = "T";
+                    if(etats_client[c].equals(".") || etats_admin[c].equals("X")){
+                        etats_client[c] = "T";
+                        etats_admin[c] = "T";
+                    }else if(etats_client[c].equals("T")){
+                        etats_client[c] = "T";
                     }
 
                 }
@@ -60,21 +67,26 @@ public class Bateau2 {
 
     public void estDetruit(){
         int detruit = 0;
-        for (int i = 0; i < etats.length; i++) {
-            if (etats[i].equals("T")) {
+        for (int i = 0; i < etats_client.length; i++) {
+            if (etats_client[i].equals("T") || etats_admin[i].equals("T")) {
                 detruit += 1;
             }
         }
-        if(detruit==etats.length){
-            for (int e = 0; e < etats.length; e++) {
-                etats[e]= "C";
+        if(detruit==etats_client.length){
+            for (int e = 0; e < etats_client.length; e++) {
+                etats_client[e]= "C";
+                etats_admin[e]= "C";
             }
         }
     }
 
-    public String[] toStringArray(){
+    public String[] toStringArray_client(){
 
-        return etats;
+        return etats_client;
+    }
+    public String[] toStringArray_admin(){
+
+        return etats_admin;
     }
 
     public int getabcisse(){

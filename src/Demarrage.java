@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
+
 
 
 public class Demarrage extends JFrame implements ActionListener {
@@ -230,7 +230,7 @@ public class Demarrage extends JFrame implements ActionListener {
                 flotte.coup(0,0);
                 flotte.coup(1,0);
                 flotte.coup(1,0);
-                carte.UpdateCarte(flotte);
+                carte.UpdateCarte(flotte,true);
                 System.out.println(carte);
                 frameJeu_Admin(jeu_Admin);
 
@@ -456,7 +456,7 @@ public class Demarrage extends JFrame implements ActionListener {
             System.exit(1);
         }
 
-    }      
+    }
 
     public void instantiationBateau(String typeBateau,int x, int y, boolean h){
         switch (typeBateau) {
