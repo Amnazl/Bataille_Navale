@@ -188,11 +188,11 @@ public class Demarrage extends JFrame implements ActionListener {
 
         JComboBox<String> boatLists = new JComboBox<>();
 
-        boatLists.addItem("Porte-avion (5 cases)");
+        boatLists.addItem("Porte-avion (4 cases)");
         boatLists.addItem("Croiseur (3 cases)");
-        boatLists.addItem("Contre-torpilleur (3 cases)");
-        boatLists.addItem("Sous-marin (3 cases)");
-        boatLists.addItem("Torpilleur (2 cases)");
+        boatLists.addItem("Escorteur (2 cases)");
+        boatLists.addItem("Sous-marin (1 cases)");
+
 
 
         panelCentre.add(boatLists);
@@ -202,10 +202,12 @@ public class Demarrage extends JFrame implements ActionListener {
         //valAbs.setText("    ");
         panelCentre.add(titreAbs);
         panelCentre.add(valAbs);
+        valAbs.setPreferredSize(new Dimension( 20, 24 ));
 
         JLabel titreOrd = new JLabel("Ordonnées : ");
         JTextField valOrd = new JTextField();
         //valOrd.setText("    ");
+        valOrd.setPreferredSize(new Dimension( 20, 24 ));
         panelCentre.add(titreOrd);
         panelCentre.add(valOrd);
 
@@ -241,7 +243,7 @@ public class Demarrage extends JFrame implements ActionListener {
 
         this.validationCarte = new JButton("Valider la disposition des bateaux");
         validationCarte.addActionListener(new ActionListener()
-        { 
+        {
             public void actionPerformed(ActionEvent e)
             {
 
