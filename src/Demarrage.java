@@ -14,11 +14,13 @@ public class Demarrage extends JFrame implements ActionListener {
     private JFrame launcherFrame = new JFrame();
     private JFrame secondFrame = new JFrame();
     private JFrame jeu_Admin = new JFrame();
+    private JFrame jeu_Client = new JFrame();
     private JTextField pseudo;
     private JPasswordField mdp;
     private JButton jouer;
     private JButton quitter;
     private JButton validationBoat;
+    private JButton validationChoix;
     private JButton validationCarte;
 
     private JProgressBar pb;
@@ -102,7 +104,7 @@ public class Demarrage extends JFrame implements ActionListener {
         if (username.equals("Admin") && password.equals("Admin")) {
             JOptionPane.showMessageDialog(null,"Vous allez vous connecter en tant qu'admin.");
 
-            for (int i = 0; i <= 100; i++) {
+            /*for (int i = 0; i <= 100; i++) {
                 final int currentValue = i;
                 try {
                     SwingUtilities.invokeLater(new Runnable() {
@@ -114,7 +116,7 @@ public class Demarrage extends JFrame implements ActionListener {
                 } catch (InterruptedException exc) {
                     JOptionPane.showMessageDialog(null, "Erreur lors du chargement du compte");
                 }
-            }
+            }*/
 
             frameDispositionBateaux_Admin(secondFrame);
             launcherFrame.setVisible(false);
@@ -123,17 +125,8 @@ public class Demarrage extends JFrame implements ActionListener {
         else{
             JOptionPane.showMessageDialog(null,"Vous allez vous connecter en tant que joueur");
 
-            secondFrame.setTitle("Jeu " + username);
-            secondFrame.setSize(650, 500);
 
-
-            secondFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
-            secondFrame.setLocationRelativeTo(null);
-            //secondFrame.setLayout(null);
-
-
-            secondFrame.setVisible(true);
-
+            frameJeu_Client(secondFrame);
             launcherFrame.setVisible(false);
         }
 
@@ -253,7 +246,6 @@ public class Demarrage extends JFrame implements ActionListener {
                 carte.UpdateCarte(flotte);
                 System.out.println(carte);
                 frameJeu_Admin(jeu_Admin);
-                //Dc6E5Vxkd
 
 
 
@@ -273,6 +265,87 @@ public class Demarrage extends JFrame implements ActionListener {
 
         secondFrame.setVisible(true);
     }
+
+
+    public void frameJeu_Client(JFrame jeu_Client){
+
+        jeu_Client.setTitle("Jeu " + username);
+        jeu_Client.setSize(650, 500);
+
+
+        jeu_Client.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        jeu_Client.setLocationRelativeTo(null);
+        jeu_Client.setLayout(new BorderLayout());
+
+
+        JPanel panelHaut = new JPanel();
+        panelHaut.setBorder(BorderFactory.createTitledBorder("Carte"));
+        panelHaut.setPreferredSize(new Dimension(340, 280));
+
+        JPanel panelCentre = new JPanel();
+        panelCentre.setBorder(BorderFactory.createTitledBorder("Jeu du joueur"));
+        panelCentre.setPreferredSize(new Dimension(340,280));
+
+        JPanel panelBas = new JPanel();
+        panelBas.setBorder(BorderFactory.createTitledBorder("Scrore du joueur"));
+        panelBas.setPreferredSize(new Dimension(100, 100));
+
+
+        JLabel titreAbs = new JLabel("Abscisse : ");
+        JTextField valAbs = new JTextField();
+        valAbs.setPreferredSize(new Dimension(20,24));
+        panelCentre.add(titreAbs);
+        panelCentre.add(valAbs);
+
+        JLabel titreOrd = new JLabel("Ordonnées : ");
+        JTextField valOrd = new JTextField();
+        valOrd.setPreferredSize(new Dimension(20,24));
+        panelCentre.add(titreOrd);
+        panelCentre.add(valOrd);
+
+
+        this.validationChoix = new JButton("Valider");
+        validationChoix.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                saisieAbs = Integer.parseInt(valAbs.getText());
+                saisieOrd = Integer.parseInt(valOrd.getText());
+
+                JOptionPane.showMessageDialog(null, saisieAbs + saisieOrd);
+
+
+            }
+        });
+        panelCentre.add(validationChoix);
+
+
+        ///// POUR LA GRILLE //////
+
+        JPanel contentGrille = new JPanel();
+        panelHaut.setLayout(new BorderLayout());
+
+        contentGrille.setLayout(new GridLayout(10, 10));//on définit la taille de la grille de 7 sur 7
+        contentGrille.setPreferredSize(new Dimension(20,20));
+
+        creationGrille_2(contentGrille);
+        contentGrille.setBounds(150,150,150,150);
+
+        panelHaut.add(contentGrille);
+
+        ///// FIN AJOUT GRILLE //////
+
+
+
+        jeu_Client.add(panelHaut, BorderLayout.NORTH);
+        jeu_Client.add(panelCentre, BorderLayout.CENTER);
+        jeu_Client.add(panelBas,BorderLayout.SOUTH);
+
+
+        jeu_Client.setVisible(true);
+
+    }
+
 
     public void frameJeu_Admin(JFrame jeu_Admin){
 
