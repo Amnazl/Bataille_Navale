@@ -23,7 +23,6 @@ public class Demarrage extends JFrame implements ActionListener {
     private JButton validationChoix;
     private JButton validationCarte;
 
-    private JProgressBar pb;
     private ImagePanel panel_ImageTitre= new ImagePanel(new ImageIcon("images/bataille_navale.png").getImage());
     private ImagePanel panel_BattleIcon = new ImagePanel(new ImageIcon("images/battleship.png").getImage());
     private ImagePanel panel_Swords_left = new ImagePanel(new ImageIcon("images/swords.png").getImage());
@@ -88,10 +87,6 @@ public class Demarrage extends JFrame implements ActionListener {
         quitter.setBounds(350,365,150,20);
         launcherFrame.add(quitter);
 
-        pb = new JProgressBar();
-        pb.setStringPainted(true);
-        pb.setBounds(0, 480, 850, 20);
-        launcherFrame.add(pb);
 
         launcherFrame.setVisible(true);
 
@@ -104,25 +99,17 @@ public class Demarrage extends JFrame implements ActionListener {
         if (username.equals("Admin") && password.equals("Admin")) {
             JOptionPane.showMessageDialog(null,"Vous allez vous connecter en tant qu'admin.");
 
-            /*for (int i = 0; i <= 100; i++) {
-                final int currentValue = i;
-                try {
-                    SwingUtilities.invokeLater(new Runnable() {
-                        public void run() {
-                            pb.setValue(currentValue);
-                        }
-                    });
-                    Thread.sleep(10);
-                } catch (InterruptedException exc) {
-                    JOptionPane.showMessageDialog(null, "Erreur lors du chargement du compte");
-                }
-            }*/
+
 
             frameDispositionBateaux_Admin(secondFrame);
             launcherFrame.setVisible(false);
 
         }
+        else if(username.equals("Admin") && !(password.equals("Admin"))){
+            JOptionPane.showMessageDialog(null,"Saisir un autre identifiant qu'Admin");
+        }
         else{
+
             JOptionPane.showMessageDialog(null,"Vous allez vous connecter en tant que joueur");
 
 
