@@ -33,7 +33,7 @@ public class Demarrage extends JFrame implements ActionListener {
     private String password = null;
 
     private String typeBateau = null;
-    private int saisieAbs = 0;
+   private int saisieAbs = 0;
     private int saisieOrd = 0;
     private boolean isHorizontale = true;
     private Flotte flotte =new Flotte();
@@ -203,12 +203,16 @@ public class Demarrage extends JFrame implements ActionListener {
                 saisieOrd = Integer.parseInt(valOrd.getText());
                 if(box_verticale.isSelected()){
                     isHorizontale = false;
+                }else {
+                    isHorizontale = true;
                 }
+
                 valAbs.setText("");
                 valOrd.setText("");
                 panelHaut.removeAll();
                 contentGrille.removeAll();
-                instantiationBateau(typeBateau,saisieAbs,saisieOrd,isHorizontale);
+                instantiationBateau(typeBateau,saisieAbs,saisieOrd,isHorizontale,carte);
+                valOrd.validate();
                 carte.UpdateCarte(flotte,true);
                 creationGrille_2(contentGrille);
                 panelHaut.add(contentGrille);
@@ -468,23 +472,23 @@ public class Demarrage extends JFrame implements ActionListener {
 
     }
 
-    public void instantiationBateau(String typeBateau,int x, int y, boolean h){
+    public void instantiationBateau(String typeBateau,int x, int y, boolean h,Carte2 carte){
         switch (typeBateau) {
             case "Croiseur (3 cases)":
                 Croisseur c=new Croisseur(x, y, h);
-                flotte.ajouterbateau(c);
+                flotte.ajouterbateau(c,carte);
                 break;
             case "Porte-avion (4 cases)":
                 PorteAvion p=new PorteAvion(x, y, h);
-                flotte.ajouterbateau(p);
+                flotte.ajouterbateau(p,carte);
                 break;
             case "Escorteur (2 cases)":
                 Escorteur e=new Escorteur(x, y, h);
-                flotte.ajouterbateau(e);
+                flotte.ajouterbateau(e,carte);
                 break;
             case "Sous-marin (1 cases)":
                 SousMarin s=new SousMarin(x, y, h);
-                flotte.ajouterbateau(s);
+                flotte.ajouterbateau(s,carte);
                 break;
 
         }

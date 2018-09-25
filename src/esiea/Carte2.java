@@ -64,4 +64,9 @@ public class Carte2 {
         }
         return s;
     }
+
+
+    public String[][] toStringArray(){
+        return tab;
+    }
 }
