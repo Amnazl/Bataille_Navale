@@ -104,6 +104,9 @@ public class FrameDispositionsAdmin extends JFrame{
                 if(box_verticale.isSelected()){
                     isHorizontale = false;
                 }
+                else
+                    isHorizontale = true;
+
                 valAbs.setText("");
                 valOrd.setText("");
                 panelHaut.removeAll();
