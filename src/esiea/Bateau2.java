@@ -111,7 +111,7 @@ public class Bateau2 {
     public boolean sortDeLaCarte(){
         boolean isIt = false;
         for(int j = 0; j < coordonnee.length;j++){
-            if(coordonnee[j] > 9 ||ordonnee > 9 || abcisse > 9 ){
+            if(coordonnee[j] > 9 || ordonnee > 9 || abcisse > 9 ){
                 isIt=true;
                 System.out.println("Impossible cette position n'est pas sur la carte");
                 break;
