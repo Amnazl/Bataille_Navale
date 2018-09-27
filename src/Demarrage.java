@@ -104,7 +104,7 @@ public class Demarrage extends JFrame implements ActionListener {
 
             JOptionPane.showMessageDialog(null,"Vous allez vous connecter en tant que joueur");
 
-            fJeuClient = new FrameJeuClient();
+            fJeuClient = new FrameJeuClient(username);
             launcherFrame.setVisible(false);
         }
 

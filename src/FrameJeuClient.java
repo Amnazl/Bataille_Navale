@@ -1,4 +1,5 @@
 import esiea.Carte2;
+import esiea.Croisseur;
 import esiea.Flotte;
 
 import javax.swing.*;
@@ -17,7 +18,13 @@ public class FrameJeuClient extends JFrame {
     private Carte2 carte  = new Carte2();
     private Flotte flotte = new Flotte();
 
-    public FrameJeuClient(){
+    public FrameJeuClient(String nom){
+
+
+        Joueur j = new Joueur(nom, false);
+
+        Croisseur c=new Croisseur(0 , 0, true);
+        flotte.ajouterbateau(c,carte);
 
         jeu_Client.setTitle("Jeu - Client");
         jeu_Client.setSize(650, 500);
@@ -84,6 +91,7 @@ public class FrameJeuClient extends JFrame {
                 flotte.coup(saisieAbs,saisieOrd);
                 carte.UpdateCarte(flotte,false);
                 panelHaut.removeAll();
+                contentGrille.removeAll();
                 creationGrille_2(contentGrille);
                 panelHaut.add(contentGrille);
                 panelHaut.revalidate();
@@ -113,6 +121,11 @@ public class FrameJeuClient extends JFrame {
     public void creationGrille_2(JPanel contentGrille){
 
 
+
+        System.out.println("----" + carte);
+
+        carte.UpdateCarte(flotte, false);
+
         JPanel cell[][]= new JPanel[10][10];
         String plateau = carte.toString();
 
@@ -138,6 +151,7 @@ public class FrameJeuClient extends JFrame {
                     cell[i][j].setBackground(Color.white);
                 }
                 contentGrille.add(cell[i][j]);
+                contentGrille.revalidate();
             }
         }
     }

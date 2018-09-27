@@ -49,7 +49,7 @@ public class Bateau2 {
                 }
             }
         } else{
-            for (int c = 1; c <= coordonnee.length; c++) {
+            for (int c = 0; c < coordonnee.length; c++) {
                 if (abcisse == x && coordonnee[c] == y) {
                     if(etats_client[c].equals(".") || etats_admin[c].equals("X")){
                         etats_client[c] = "T";
