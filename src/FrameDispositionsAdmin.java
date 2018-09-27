@@ -15,16 +15,19 @@ public class FrameDispositionsAdmin extends JFrame{
 
     public FrameJeuAdmin fJeuAd;
 
-
     private String typeBateau = null;
     private int saisieAbs = 0;
     private int saisieOrd = 0;
     private boolean isHorizontale = true;
     private Flotte flotte =new Flotte();
     private Carte2 carte  = new Carte2();
+    private static String args[];
 
 
     public FrameDispositionsAdmin(){
+
+        ThreadMain threadMain = new ThreadMain ();
+        threadMain.start();
 
         dispo_Admin.setTitle("Initialisation - Admin");
         dispo_Admin.setSize(650, 500);
@@ -236,5 +239,8 @@ public class FrameDispositionsAdmin extends JFrame{
 
         }
     }
+
+
+
 
 }

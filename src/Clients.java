@@ -75,7 +75,7 @@ public class Clients implements Runnable {
     }
 
     /*
-     * Create a thread to read from the server. (non-Javadoc)
+     * créer un thread pour la lecture sur le serveur
      *
      * @see java.lang.Runnable#run()
      */
@@ -88,7 +88,7 @@ public class Clients implements Runnable {
         try {
             while ((responseLine = is.readLine()) != null) {
                 System.out.println(responseLine);
-                if (responseLine.indexOf("*** Bye") != -1)
+                if (responseLine.indexOf("Bye") != -1)
                     break;
             }
             closed = true;
