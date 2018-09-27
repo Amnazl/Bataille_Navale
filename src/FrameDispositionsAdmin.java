@@ -72,8 +72,6 @@ public class FrameDispositionsAdmin extends JFrame{
         boatLists.addItem("Escorteur (2 cases)");
         boatLists.addItem("Sous-marin (1 cases)");
 
-
-
         panelCentre.add(boatLists);
 
         JLabel titreAbs = new JLabel("Abscisse : ");

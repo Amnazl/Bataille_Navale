@@ -111,7 +111,7 @@ public class Bateau2 {
     public boolean sortDeLaCarte(){
         boolean isIt = false;
         for(int j = 0; j < coordonnee.length;j++){
-            if(coordonnee[j] > 9 || ordonnee > 9 || abcisse > 9 ){
+            if(coordonnee[j] > 9 ||ordonnee > 9 || abcisse > 9 ){
                 isIt=true;
                 System.out.println("Impossible cette position n'est pas sur la carte");
                 break;
@@ -185,44 +185,36 @@ public class Bateau2 {
         return isIt;
     }*/
 
-   public boolean compareCoor(Bateau2 b1,Carte2 carte){
-       boolean isIt = false;
-       int abs_b1;
-       int ord_b1;
-       int[] coor = coordonnee;
-       String plateau[][] = carte.toStringArray();
+    public boolean compareCoor(Bateau2 b1,Carte2 carte){
+        boolean isIt = false;
+        int abs_b1;
+        int ord_b1;
+        int[] coor = coordonnee;
+        String plateau[][] = carte.toStringArray();
 
-           abs_b1 = abcisse;
-           ord_b1 =ordonnee;
-                   for(int k = 0; k< coor.length;k++){
-                       if(horizontal){
-                           System.out.println(abs_b1);
-                           if(plateau[abs_b1][coor[k]].equals("X")){
+        abs_b1 = abcisse;
+        ord_b1 =ordonnee;
+        for(int k = 0; k < coor.length;k++){
+            if(horizontal){
+                System.out.println(abs_b1);
+                if(plateau[abs_b1][coor[k]].equals("X")){
 
-                               isIt = true;
-                               break;
+                    isIt = true;
+                    break;
 
-                           }
-                       }else{
-                           if(plateau[coor[k]][ord_b1].equals("X")){
+                }
+            }else{
+                if(plateau[coor[k]][ord_b1].equals("X")){
 
-                               isIt = true;
-                               break;
+                    isIt = true;
+                    break;
 
-                           }
+                }
 
-                       }
-       }
-
-
-       return isIt;
+            }
+        }
 
 
-
-
-
-   }
-
-
-
+        return isIt;
+    }
 }
