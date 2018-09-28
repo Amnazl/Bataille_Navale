@@ -104,10 +104,10 @@ public class FrameJeuClient extends JFrame {
                 panelHaut.add(contentGrille);
                 panelHaut.revalidate();
                 System.out.println(carte);
-                JLabel sc = new JLabel();
-                sc.setText(Integer.toString(j.getScore()));
+                JLabel score_joueur_jlabel = new JLabel();
+                score_joueur_jlabel.setText(Integer.toString(j.getScore()));
                 panelBas.removeAll();
-                panelBas.add(sc);
+                panelBas.add(score_joueur_jlabel);
 
 
                 //JOptionPane.showMessageDialog(null, saisieAbs + saisieOrd);
