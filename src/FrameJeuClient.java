@@ -96,15 +96,21 @@ public class FrameJeuClient extends JFrame {
                     j.setScore(5);
                 }
 
-                System.out.println("Score du joeur : " +j.getScore());
+                System.out.println("Score du joueur : " +j.getScore());
+
                 panelHaut.removeAll();
                 contentGrille.removeAll();
                 creationGrille_2(contentGrille);
                 panelHaut.add(contentGrille);
                 panelHaut.revalidate();
                 System.out.println(carte);
+                JLabel sc = new JLabel();
+                sc.setText(Integer.toString(j.getScore()));
+                panelBas.removeAll();
+                panelBas.add(sc);
 
-                JOptionPane.showMessageDialog(null, saisieAbs + saisieOrd);
+
+                //JOptionPane.showMessageDialog(null, saisieAbs + saisieOrd);
 
 
             }
