@@ -35,15 +35,18 @@ public class Bateau2 {
     }
 
 
-    public void touche(int x, int y){
+    public boolean touche(int x, int y){
+        boolean score = false;
         if(!(this.horizontal)) {
             for (int c = 1; c <= coordonnee.length; c++) {
                 if (coordonnee[c] == x && ordonnee == y) {
                     if(etats_client[c].equals(".") || etats_admin[c].equals("X") ){
+                        score = true;
                         etats_client[c] = "T";
                         etats_admin[c] = "T";
-                    }else if(etats_client[c].equals("T")){
-                        etats_client[c] = "T";
+                    }else if(etats_client[c].equals("T") || etats_client[c].equals("C")){
+                        //etats_client[c] = "T";
+                        score = false;
                     }
 
                 }
@@ -51,22 +54,27 @@ public class Bateau2 {
         } else{
             for (int c = 0; c < coordonnee.length; c++) {
                 if (abcisse == x && coordonnee[c] == y) {
+                    score = true;
                     if(etats_client[c].equals(".") || etats_admin[c].equals("X")){
                         etats_client[c] = "T";
                         etats_admin[c] = "T";
-                    }else if(etats_client[c].equals("T")){
-                        etats_client[c] = "T";
+                    }else if(etats_client[c].equals("T") || etats_client[c].equals("C")){
+                        //etats_client[c] = "T";
+                        score = false;
                     }
 
                 }
 
             }
+
         }
+        return score;
 
     }
 
-    public void estDetruit(){
+    public boolean estDetruit(){
         int detruit = 0;
+
         for (int i = 0; i < etats_client.length; i++) {
             if (etats_client[i].equals("T") || etats_admin[i].equals("T")) {
                 detruit += 1;
@@ -77,7 +85,9 @@ public class Bateau2 {
                 etats_client[e]= "C";
                 etats_admin[e]= "C";
             }
+            return true;
         }
+        return false;
     }
 
     public String[] toStringArray_client(){

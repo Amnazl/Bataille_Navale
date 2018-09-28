@@ -6,6 +6,7 @@ public class Carte2 {
     public static final int ordonne = 10;
     public static final int abscisse = 10;
     private String tab[][];
+    private boolean isDetruit;
 
     public Carte2() {
         this.tab = new String[10][10];
@@ -22,7 +23,7 @@ public class Carte2 {
             for (int i = 0; i < 10; i++) {
                 for (int j = 0; j < 10; j++) {
                     if (bateau.getabcisse() == i && bateau.getordonnee() == j) {
-                        bateau.estDetruit();
+                       isDetruit = bateau.estDetruit();
                         String[] res;
                         if(admin){
                             res = bateau.toStringArray_admin();
@@ -49,6 +50,10 @@ public class Carte2 {
                 }
             }
         }
+    }
+
+    public boolean getisDetruit(){
+        return isDetruit;
     }
 
     public String toString(){

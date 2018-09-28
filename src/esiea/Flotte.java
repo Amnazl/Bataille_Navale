@@ -71,11 +71,13 @@ public class Flotte {
         if(bateaux.contains(b))
             bateaux.remove(b);
     }
-    public void coup(int x, int y){
-        for(int i=0;i<bateaux.size();i++){
-            ((Bateau2)(bateaux.get(i))).touche(x,y);
+    public boolean coup(int x, int y){
 
+        boolean score = false;
+        for(int i=0;i<bateaux.size();i++){
+           score = ((Bateau2)(bateaux.get(i))).touche(x,y);
         }
+        return score;
 
     }
 

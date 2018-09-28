@@ -87,9 +87,16 @@ public class FrameJeuClient extends JFrame {
                 //// A TESTER
                 valAbs.setText("");
                 valOrd.setText("");
-
-                flotte.coup(saisieAbs,saisieOrd);
+                boolean coup = flotte.coup(saisieAbs,saisieOrd);
+                if(coup){
+                    j.setScore(5);
+                }
                 carte.UpdateCarte(flotte,false);
+                if(carte.getisDetruit()){
+                    j.setScore(5);
+                }
+
+                System.out.println("Score du joeur : " +j.getScore());
                 panelHaut.removeAll();
                 contentGrille.removeAll();
                 creationGrille_2(contentGrille);
@@ -122,7 +129,7 @@ public class FrameJeuClient extends JFrame {
 
 
 
-        System.out.println("----" + carte);
+        System.out.println("----Client---- " + carte);
 
         carte.UpdateCarte(flotte, false);
 
