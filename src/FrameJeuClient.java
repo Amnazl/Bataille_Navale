@@ -13,8 +13,8 @@ public class FrameJeuClient extends JFrame {
 
     private JButton validationChoix;
 
-    private int saisieAbs = 0;
-    private int saisieOrd = 0;
+    private int saisieAbs = 9999 ;
+    private int saisieOrd = 9999;
     private Carte2 carte  = new Carte2();
     private Flotte flotte = new Flotte();
 
@@ -80,23 +80,23 @@ public class FrameJeuClient extends JFrame {
         validationChoix.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                saisieAbs = Integer.parseInt(valAbs.getText());
-                saisieOrd = Integer.parseInt(valOrd.getText());
-
                 //// A TESTER
-                valAbs.setText("");
-                valOrd.setText("");
-                boolean coup = flotte.coup(saisieAbs,saisieOrd);
-                if(coup){
-                    j.setScore(5);
-                }
-                carte.UpdateCarte(flotte,false);
-                if(carte.getisDetruit()){
-                    j.setScore(5);
-                }
+                try{
+                    saisieAbs = Integer.parseInt(valAbs.getText());
+                    saisieOrd = Integer.parseInt(valOrd.getText());
+                    boolean coup = flotte.coup(saisieAbs,saisieOrd);
+                    if(coup){
+                        j.setScore(5);
+                    }
+                    carte.UpdateCarte(flotte,false);
+                    if(carte.getisDetruit()){
+                        j.setScore(5);
+                    }
 
-                System.out.println("Score du joueur : " +j.getScore());
+                    System.out.println("Score du joueur : " +j.getScore());
+                }catch (NumberFormatException n){
+                        JOptionPane.showMessageDialog(null, "Veuillez entrer un chiffre uniquement.");
+                    }
 
                 panelHaut.removeAll();
                 contentGrille.removeAll();
@@ -108,6 +108,8 @@ public class FrameJeuClient extends JFrame {
                 score_joueur_jlabel.setText(Integer.toString(j.getScore()));
                 panelBas.removeAll();
                 panelBas.add(score_joueur_jlabel);
+                valAbs.setText("");
+                valOrd.setText("");
 
 
                 //JOptionPane.showMessageDialog(null, saisieAbs + saisieOrd);
