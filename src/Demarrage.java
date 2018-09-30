@@ -113,7 +113,7 @@ public class Demarrage extends JFrame implements ActionListener {
             fDispoAd = new FrameDispositionsAdmin();
             launcherFrame.setVisible(false);
 
-        }
+    }
         else if(username.equals("Admin") && !(password.equals("Admin"))){
             JOptionPane.showMessageDialog(null,"Saisir un autre identifiant qu'Admin");
         }
