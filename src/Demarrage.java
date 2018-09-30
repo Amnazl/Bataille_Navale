@@ -17,6 +17,8 @@ public class Demarrage extends JFrame implements ActionListener {
     private JButton quitter;
 
 
+    private int nbClients;
+
     public FrameDispositionsAdmin fDispoAd;
     public FrameJeuClient fJeuClient;
 
@@ -88,10 +90,25 @@ public class Demarrage extends JFrame implements ActionListener {
 
     public void checkId(String username, String password){
 
+        boolean isInt;
+
         if (username.equals("Admin") && password.equals("Admin")) {
             JOptionPane.showMessageDialog(null,"Vous allez vous connecter en tant qu'admin.");
 
 
+            do{
+
+                try{
+                    nbClients = Integer.parseInt(JOptionPane.showInputDialog(null, "Combien de joueurs voulez-vous ? :"));
+                    System.out.println(nbClients);
+                    isInt = true;
+
+                }catch(NumberFormatException nbEx){
+                    JOptionPane.showMessageDialog(null, "Veuillez entrer un chiffre uniquement.");
+                    isInt = false;
+                }
+
+            }while(isInt == false);
 
             fDispoAd = new FrameDispositionsAdmin();
             launcherFrame.setVisible(false);
