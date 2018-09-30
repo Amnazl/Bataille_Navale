@@ -84,6 +84,10 @@ public class FrameJeuClient extends JFrame {
                 try{
                     saisieAbs = Integer.parseInt(valAbs.getText());
                     saisieOrd = Integer.parseInt(valOrd.getText());
+
+                    if(saisieAbs > 9 || saisieOrd > 9){
+                        JOptionPane.showMessageDialog(null, "Veuillez entrer un chiffre compris entre 0 et 9.");
+                    }
                     boolean coup = flotte.coup(saisieAbs,saisieOrd);
                     if(coup){
                         j.setScore(5);
@@ -92,6 +96,7 @@ public class FrameJeuClient extends JFrame {
                     if(carte.getisDetruit()){
                         j.setScore(5);
                     }
+
 
                     System.out.println("Score du joueur : " +j.getScore());
                 }catch (NumberFormatException n){
