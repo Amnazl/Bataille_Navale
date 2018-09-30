@@ -89,6 +89,15 @@ public class FrameJeuAdmin extends JFrame {
                 } else {
                     cell[i][j].setBackground(Color.white);
                 }
+                if("X".equals(lettre.getText())){
+                    cell[i][j].setBackground(Color.green);
+                }else if("T".equals(lettre.getText())){
+                    cell[i][j].setBackground(Color.orange);
+
+                }else if("C".equals(lettre.getText())) {
+                    lettre.setForeground(Color.white);
+                    cell[i][j].setBackground(Color.red);
+                }
                 contentGrille.add(cell[i][j]);
             }
         }

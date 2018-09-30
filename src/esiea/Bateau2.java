@@ -38,7 +38,7 @@ public class Bateau2 {
     public boolean touche(int x, int y){
         boolean score = false;
         if(!(this.horizontal)) {
-            for (int c = 1; c <= coordonnee.length; c++) {
+            for (int c = 0; c < coordonnee.length; c++) {
                 if (coordonnee[c] == x && ordonnee == y) {
                     if(etats_client[c].equals(".") || etats_admin[c].equals("X") ){
                         score = true;
@@ -195,7 +195,7 @@ public class Bateau2 {
         return isIt;
     }*/
 
-    public boolean compareCoor(Bateau2 b1,Carte2 carte){
+    public boolean compareCoor(Carte2 carte){
         boolean isIt = false;
         int abs_b1;
         int ord_b1;

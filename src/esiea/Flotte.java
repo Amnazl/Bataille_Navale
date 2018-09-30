@@ -32,7 +32,7 @@ public class Flotte {
             }
         }
     }*/
-    public void ajouterbateau(Bateau2 b,Carte2 c) {
+    public boolean ajouterbateau(Bateau2 b,Carte2 c) {
         boolean compareCoor = false;
         boolean sortCarte = false;
         if (!bateaux.contains(b)) {
@@ -47,23 +47,17 @@ public class Flotte {
                 sortCarte = b.sortDeLaCarte();
                 System.out.println("2 : "+sortCarte);
                 if(sortCarte==false ){
-
-
-                    //A RETIRER n,'est PAS UTILE
-                    for (Object b2 : bateaux) {
-                        compareCoor= b.compareCoor((Bateau2)(b2),c);
-                        System.out.println("1 : " +compareCoor);
-                    }
+                    compareCoor= b.compareCoor(c);
+                    System.out.println("1 : " +compareCoor);
                     if(compareCoor==false){
                         System.out.println("ajouté");
                         bateaux.add(b);
                     }
 
                 }
-
-
             }
         }
+        return compareCoor;
     }
 
 

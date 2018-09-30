@@ -26,7 +26,7 @@ public class FrameDispositionsAdmin extends JFrame{
 
     public FrameDispositionsAdmin(){
 
-        ThreadMain threadMain = new ThreadMain ();
+        ThreadMain threadMain = new ThreadMain();
         threadMain.start();
 
         dispo_Admin.setTitle("Initialisation - Admin");
@@ -77,14 +77,14 @@ public class FrameDispositionsAdmin extends JFrame{
 
         panelCentre.add(boatLists);
 
-        JLabel titreAbs = new JLabel("Abscisse : ");
+        JLabel titreAbs = new JLabel("Ligne : ");
         JTextField valAbs = new JTextField();
         //valAbs.setText("    ");
         panelCentre.add(titreAbs);
         panelCentre.add(valAbs);
         valAbs.setPreferredSize(new Dimension( 20, 24 ));
 
-        JLabel titreOrd = new JLabel("Ordonnées : ");
+        JLabel titreOrd = new JLabel("Colonne : ");
         JTextField valOrd = new JTextField();
         //valOrd.setText("    ");
         valOrd.setPreferredSize(new Dimension( 20, 24 ));
@@ -100,28 +100,41 @@ public class FrameDispositionsAdmin extends JFrame{
         validationBoat.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                boolean positionInco;
+                try{
+                    typeBateau = boatLists.getSelectedItem().toString();
+                    saisieAbs = Integer.parseInt(valAbs.getText());
+                    saisieOrd = Integer.parseInt(valOrd.getText());
+                    if(box_verticale.isSelected()){
+                        isHorizontale = false;
+                    }
+                    else
+                        isHorizontale = true;
 
-                typeBateau = boatLists.getSelectedItem().toString();
-                saisieAbs = Integer.parseInt(valAbs.getText());
-                saisieOrd = Integer.parseInt(valOrd.getText());
-                if(box_verticale.isSelected()){
-                    isHorizontale = false;
+                    valAbs.setText("");
+                    valOrd.setText("");
+                    panelHaut.removeAll();
+                    contentGrille.removeAll();
+                    boolean codeErreur[]= instantiationBateau(typeBateau,saisieAbs,saisieOrd,isHorizontale,carte);
+                    if(codeErreur[0]){
+                        JOptionPane.showMessageDialog(null, "Impossible cette position sort de la carte");
+                    }
+                    if(codeErreur[1]){
+                        JOptionPane.showMessageDialog(null, "Un bateau est déjà à cette position");
+                    }
+
+                    carte.UpdateCarte(flotte,true);
+                    creationGrille_2(contentGrille);
+                    panelHaut.add(contentGrille);
+                    panelHaut.revalidate();
+                    System.out.println(carte);
+
+                }catch (NumberFormatException n){
+                    JOptionPane.showMessageDialog(null, "Veuillez entrer un chiffre uniquement.");
                 }
-                else
-                    isHorizontale = true;
 
-                valAbs.setText("");
-                valOrd.setText("");
-                panelHaut.removeAll();
-                contentGrille.removeAll();
-                instantiationBateau(typeBateau,saisieAbs,saisieOrd,isHorizontale,carte);
-                carte.UpdateCarte(flotte,true);
-                creationGrille_2(contentGrille);
-                panelHaut.add(contentGrille);
-                panelHaut.revalidate();
-                System.out.println(carte);
 
-                JOptionPane.showMessageDialog(null,typeBateau + saisieAbs + saisieOrd + isHorizontale);
+               // JOptionPane.showMessageDialog(null,typeBateau + saisieAbs + saisieOrd + isHorizontale);
 
 
             }
@@ -134,12 +147,13 @@ public class FrameDispositionsAdmin extends JFrame{
             public void actionPerformed(ActionEvent e)
             {
 
-                /*flotte.coup(2,3);
+               /* flotte.coup(2,3);
                 flotte.coup(3,3);
                 flotte.coup(4,3);
-                flotte.coup(0,0);
-                flotte.coup(1,0);
-                flotte.coup(1,0);*/
+                flotte.coup(0,0);*/
+               flotte.coup(0,0);
+                //flotte.coup(0,2);
+                //flotte.coup(0,1);
                 carte.UpdateCarte(flotte,true);
                 System.out.println(carte);
                 //frameJeu_Admin(jeu_Admin);
@@ -172,7 +186,7 @@ public class FrameDispositionsAdmin extends JFrame{
 
         for(int i=0; i<cell.length; i++){
             for(int j=0; j<cell.length; j++){
-                JLabel lettre = new JLabel("*");
+               JLabel lettre = new JLabel(".");
                 cell[i][j]= new JPanel();
                 cell[i][j].setSize(new Dimension(10, 10));
                 cell[i][j].add(lettre);
@@ -203,6 +217,7 @@ public class FrameDispositionsAdmin extends JFrame{
         for(int i=0; i<cell.length; i++){
 
             for(int j=0; j<cell.length; j++){
+
                 //System.out.println((i+1)*(j+1));
                 JLabel lettre = new JLabel(result[(i*cell.length)+j]);
                 cell[i][j]= new JPanel();
@@ -213,34 +228,41 @@ public class FrameDispositionsAdmin extends JFrame{
                 } else {
                     cell[i][j].setBackground(Color.white);
                 }
+
                 contentGrille.add(cell[i][j]);
             }
         }
     }
 
-    public void instantiationBateau(String typeBateau,int x, int y, boolean h,Carte2 carte){
+    public boolean[] instantiationBateau(String typeBateau,int x, int y, boolean h,Carte2 carte){
+        boolean codeErreur[] = new boolean[2];
         switch (typeBateau) {
             case "Croiseur (3 cases)":
                 Croisseur c=new Croisseur(x, y, h);
-                flotte.ajouterbateau(c,carte);
+                codeErreur[0] =c.sortDeLaCarte();
+                codeErreur[1] =flotte.ajouterbateau(c,carte);
                 break;
             case "Porte-avion (4 cases)":
                 PorteAvion p=new PorteAvion(x, y, h);
-                flotte.ajouterbateau(p,carte);
+                codeErreur[0] =p.sortDeLaCarte();
+                codeErreur[1] =flotte.ajouterbateau(p,carte);
                 break;
             case "Escorteur (2 cases)":
                 Escorteur e=new Escorteur(x, y, h);
-                flotte.ajouterbateau(e,carte);
+                codeErreur[0] =e.sortDeLaCarte();
+                codeErreur[1] =flotte.ajouterbateau(e,carte);
                 break;
             case "Sous-marin (1 cases)":
                 SousMarin s=new SousMarin(x, y, h);
-                flotte.ajouterbateau(s,carte);
+                codeErreur[0] =s.sortDeLaCarte();
+                codeErreur[1] =flotte.ajouterbateau(s,carte);
                 break;
 
         }
+
+        return codeErreur;
+
+
     }
-
-
-
 
 }

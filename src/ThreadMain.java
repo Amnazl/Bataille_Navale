@@ -11,7 +11,7 @@ public class ThreadMain extends Thread {
     private static Socket clientSocket = null;
 
     // nombre max de clients.
-    private  int maxClientsCount = 10;
+    private  int maxClientsCount = 4;
     private  clientThread[] threads = new clientThread[maxClientsCount];
 
     public void run() {
@@ -32,13 +32,16 @@ public class ThreadMain extends Thread {
          * Créez une Socket client pour chaque connexion et passez-la à un nouveau client.
          * thread.
          */
+        System.out.println("Server is on");
         while (true) {
+            System.out.println("Server is on2");
             try {
                 clientSocket = serverSocket.accept();
                 int i;
                 for (i = 0; i < maxClientsCount; i++) {
                     if (threads[i] == null) {
                         (threads[i] = new clientThread(clientSocket, threads)).start();
+                        System.out.println("Nouveau client ajouté");
                         break;
                     }
                 }

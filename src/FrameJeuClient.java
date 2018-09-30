@@ -48,13 +48,13 @@ public class FrameJeuClient extends JFrame {
         panelBas.setPreferredSize(new Dimension(100, 100));
 
 
-        JLabel titreAbs = new JLabel("Abscisse : ");
+        JLabel titreAbs = new JLabel("Ligne : ");
         JTextField valAbs = new JTextField();
         valAbs.setPreferredSize(new Dimension(20,24));
         panelCentre.add(titreAbs);
         panelCentre.add(valAbs);
 
-        JLabel titreOrd = new JLabel("Ordonnées : ");
+        JLabel titreOrd = new JLabel("Colonne : ");
         JTextField valOrd = new JTextField();
         valOrd.setPreferredSize(new Dimension(20,24));
         panelCentre.add(titreOrd);
@@ -164,6 +164,11 @@ public class FrameJeuClient extends JFrame {
                     cell[i][j].setBackground(Color.gray);
                 } else {
                     cell[i][j].setBackground(Color.white);
+                }
+                if("T".equals(lettre.getText())){
+                    cell[i][j].setBackground(Color.orange);
+                }else if("C".equals(lettre.getText())) {
+                    cell[i][j].setBackground(Color.green);
                 }
                 contentGrille.add(cell[i][j]);
                 contentGrille.revalidate();
