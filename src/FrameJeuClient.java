@@ -1,6 +1,4 @@
-import esiea.Carte2;
-import esiea.Croisseur;
-import esiea.Flotte;
+import esiea.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -25,6 +23,13 @@ public class FrameJeuClient extends JFrame {
 
         Croisseur c=new Croisseur(0 , 0, true);
         flotte.ajouterbateau(c,carte);
+        PorteAvion p=new PorteAvion(4, 3, true);
+        flotte.ajouterbateau(p,carte);
+         Escorteur e=new Escorteur(0, 9, false);
+        flotte.ajouterbateau(e,carte);
+        SousMarin ss = new SousMarin(9,9,true);
+        flotte.ajouterbateau(ss,carte);
+
 
         jeu_Client.setTitle("Jeu - Client");
         jeu_Client.setSize(650, 500);
@@ -115,9 +120,7 @@ public class FrameJeuClient extends JFrame {
                 panelBas.add(score_joueur_jlabel);
                 valAbs.setText("");
                 valOrd.setText("");
-
-
-                //JOptionPane.showMessageDialog(null, saisieAbs + saisieOrd);
+                ;
 
 
             }

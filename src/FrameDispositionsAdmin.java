@@ -146,12 +146,15 @@ public class FrameDispositionsAdmin extends JFrame{
         {
             public void actionPerformed(ActionEvent e)
             {
-
-               /* flotte.coup(2,3);
-                flotte.coup(3,3);
+                //Porte avion
+                flotte.coup(0,0);
+                flotte.coup(0,2);
+                //Sous-marin
+                //flotte.coup(9,9);
+                //Croisseur
                 flotte.coup(4,3);
-                flotte.coup(0,0);*/
-               flotte.coup(0,0);
+                flotte.coup(5,3);
+                 //  flotte.coup(0,0);
                 //flotte.coup(0,2);
                 //flotte.coup(0,1);
                 carte.UpdateCarte(flotte,true);
@@ -162,7 +165,7 @@ public class FrameDispositionsAdmin extends JFrame{
                 fJeuAd = new FrameJeuAdmin(carte);
 
 
-                //secondFrame.setVisible(false);
+                dispo_Admin.setVisible(false);
 
             }
         });

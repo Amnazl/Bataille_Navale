@@ -11,7 +11,7 @@ public class ThreadMain extends Thread {
     private static Socket clientSocket = null;
 
     // nombre max de clients.
-    private  int maxClientsCount = 4;
+    private  int maxClientsCount = 5;
     private  clientThread[] threads = new clientThread[maxClientsCount];
 
     public void run() {
@@ -33,8 +33,7 @@ public class ThreadMain extends Thread {
          * thread.
          */
         System.out.println("Server is on");
-        while (true) {
-            System.out.println("Server is on2");
+       /* while (true) {
             try {
                 clientSocket = serverSocket.accept();
                 int i;
@@ -54,6 +53,9 @@ public class ThreadMain extends Thread {
             } catch (IOException e) {
                 System.out.println(e);
             }
-        }
+        }*/
     }
+
+
+
 }
