@@ -28,9 +28,9 @@ public class FrameJeuAdmin extends JFrame {
         panelHaut.setBorder(BorderFactory.createTitledBorder("Carte"));
         panelHaut.setPreferredSize(new Dimension(340, 280));
 
-        JPanel panelBas = new JPanel();
+      /*  JPanel panelBas = new JPanel();
         panelBas.setBorder(BorderFactory.createTitledBorder("Scores des joueurs : "));
-        panelBas.setPreferredSize(new Dimension(100,200));
+        panelBas.setPreferredSize(new Dimension(100,200));*/
 
 
         ///// POUR LA GRILLE //////
@@ -52,7 +52,7 @@ public class FrameJeuAdmin extends JFrame {
 
 
         jeu_Admin.add(panelHaut, BorderLayout.NORTH);
-        jeu_Admin.add(panelBas, BorderLayout.SOUTH);
+        //jeu_Admin.add(panelBas, BorderLayout.SOUTH);
 
         jeu_Admin.setVisible(true);
 
@@ -80,7 +80,7 @@ public class FrameJeuAdmin extends JFrame {
             for(int j=0; j<cell.length; j++){
                 //System.out.println((i+1)*(j+1));
                 JLabel lettre = new JLabel(result[(i*cell.length)+j]);
-                System.out.println(result[(i*cell.length)+j]);
+               // System.out.println(result[(i*cell.length)+j]);
                 cell[i][j]= new JPanel();
                 cell[i][j].setSize(new Dimension(10, 10));
                 cell[i][j].add(lettre);
