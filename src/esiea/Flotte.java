@@ -9,29 +9,6 @@ public class Flotte {
         bateaux=new Vector();
     }
 
-
-
-    /*public void ajouterbateau(Bateau2 b) {
-        boolean compareCoor = false;
-        boolean SortCarte = false;
-        if (!bateaux.contains(b)) {
-            if (bateaux.size() == 0) {
-                bateaux.add(b);
-            } else {
-                for (Object b2 : bateaux) {
-                    compareCoor= b.compareCoor((Bateau2)(b2));
-                    System.out.println("1 : "+compareCoor);
-                }
-                SortCarte= b.sortDeLaCarte();
-                System.out.println("2 : "+SortCarte);
-                if(compareCoor==false && SortCarte==false ){
-                    System.out.println("ajouté");
-                    bateaux.add(b);
-                }
-
-            }
-        }
-    }*/
     public boolean ajouterbateau(Bateau2 b,Carte2 c) {
         boolean compareCoor = false;
         boolean sortCarte = false;
@@ -69,8 +46,14 @@ public class Flotte {
 
         boolean score = false;
         for(int i=0;i<bateaux.size();i++){
-           score = ((Bateau2)(bateaux.get(i))).touche(x,y);
+            Bateau2 b = ((Bateau2)(bateaux.get(i)));
+            score = b.touche(x,y);
+            if(score){
+                break;
+            }
+
         }
+
         return score;
 
     }
@@ -95,7 +78,7 @@ public class Flotte {
     public String toString(){
         String res="";
         for(int i=0;i<bateaux.size();i++)
-            res+=((Bateau)(bateaux.get(i))).toString()+'\n';
+            res+=((Bateau2)(bateaux.get(i))).toString()+'\n';
         return res;
     }
 }

@@ -45,8 +45,8 @@ public class Bateau2 {
                         etats_client[c] = "T";
                         etats_admin[c] = "T";
                     }else if(etats_client[c].equals("T") || etats_client[c].equals("C")){
-                        //etats_client[c] = "T";
-                        score = false;
+
+                       score = false;
                     }
 
                 }
@@ -54,12 +54,11 @@ public class Bateau2 {
         } else{
             for (int c = 0; c < coordonnee.length; c++) {
                 if (abcisse == x && coordonnee[c] == y) {
-                    score = true;
                     if(etats_client[c].equals(".") || etats_admin[c].equals("X")){
+                        score = true;
                         etats_client[c] = "T";
                         etats_admin[c] = "T";
                     }else if(etats_client[c].equals("T") || etats_client[c].equals("C")){
-                        //etats_client[c] = "T";
                         score = false;
                     }
 
@@ -131,69 +130,6 @@ public class Bateau2 {
 
     }
 
-   /* public boolean compareCoor(Bateau2 b){
-        boolean isIt = false;
-        int[] coor = b.getCoordonnee();
-        for (int i = 0; i < coor.length; i++) {
-            System.out.println(coor[i]+"="+abcisse);
-            System.out.println(coor[i]+"="+ordonnee);
-
-            if(b.horizontal){
-                if(horizontal==false){
-                    if(coor[i]==ordonnee){
-                        for(int j = 0; j <coordonnee.length; j++){
-                            if(coor[i]==coordonnee[j]){
-                                isIt = true;
-                                System.out.println("passe pas");
-                                break;
-                            }
-                        }
-                    }
-                }
-            }
-            if(isIt == true){
-                break;
-            }
-
-
-               /* if( horizontal==false){
-                    if (coor[0] == ordonnee) {
-
-                        System.out.println("Impossible le bateau "+b.toString()+" est à cette position");
-                        isIt = true;
-                        break;
-                    }
-
-                }else{
-                    if( coor[i] == abcisse){
-                        System.out.println("Impossible le bateau "+b.toString()+" est à cette position");
-                        isIt = true;
-                        break;
-                    }
-
-                }
-
-
-            }else{
-                if(horizontal){
-                    if (coor[0] ==abcisse) {
-                        System.out.println("Impossible le bateau "+b.toString()+" est à cette position");
-                        isIt = true;
-                        break;
-                    }
-
-                }else{
-                    if( coor[i] == ordonnee){
-                        System.out.println("Impossible le bateau "+b.toString()+" est à cette position");
-                        isIt = true;
-                        break;
-                    }
-                }
-            }
-
-        }
-        return isIt;
-    }*/
 
     public boolean compareCoor(Carte2 carte){
         boolean isIt = false;

@@ -1,5 +1,6 @@
 package esiea;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Carte2 {
@@ -37,10 +38,6 @@ public class Carte2 {
                                 tab[i][j+str] = res[str];
                             }
                         }else{
-                            /*String[] st = bateau.toString().split("\n");
-                               for(int carac = 0;carac<st.length;carac++){
-                                   tab[i+carac][j] = st[carac];
-                               }*/
                             for(int str = 0; str < res.length; str++){
 
                                 tab[i+str][j] = res[str];
@@ -58,10 +55,7 @@ public class Carte2 {
 
     public String toString(){
         String s="";
-        //s+="1 2 3 4 5 6 7 8 9 10";
         for (int i = 0; i < 10; i++) {
-           // s+= "\n";
-           // s+= i+" ";
             for (int j = 0; j < 10; j++) {
 
                 s+=tab[i][j];
