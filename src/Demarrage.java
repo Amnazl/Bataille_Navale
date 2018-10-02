@@ -40,7 +40,7 @@ public class Demarrage extends JFrame implements ActionListener {
 
         launcherFrame.setTitle("Launcher");
         launcherFrame.setSize(850, 500);
-        launcherFrame.setUndecorated(true); //Cacher les contours de la fenêtre
+        //launcherFrame.setUndecorated(true); //Cacher les contours de la fenêtre
         launcherFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
         launcherFrame.setLocationRelativeTo(null);
         launcherFrame.setLayout(null);

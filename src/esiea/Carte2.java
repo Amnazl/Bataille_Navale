@@ -65,6 +65,25 @@ public class Carte2 {
     }
 
 
+    public void setCarte(String carte){
+        int len = carte.length();
+        String[] result = new String[len];
+
+        for(int a = 0; a < len; a++ ){
+            result[a] = carte.substring(a,a+1);
+            System.out.println(result[a]);
+        }
+        for(int i=0; i<10; i++){
+            for(int j=0; j<10; j++){
+                //System.out.println((i+1)*(j+1));
+                tab[i][j] = result[(i*10)+j] ;
+
+
+            }
+        }
+    }
+
+
     public String[][] toStringArray(){
         return tab;
     }

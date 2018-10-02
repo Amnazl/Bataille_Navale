@@ -10,25 +10,33 @@ public class FrameJeuClient extends JFrame {
     private JFrame jeu_Client = new JFrame();
 
     private JButton validationChoix;
+    private JButton boutonRaffraichissementCarte;
 
     private int saisieAbs = 9999 ;
     private int saisieOrd = 9999;
     private Carte2 carte  = new Carte2();
     private Flotte flotte = new Flotte();
+    private Client c;
+    public static String str ;
 
     public FrameJeuClient(String nom){
 
 
         Joueur j = new Joueur(nom, false);
+        Client c = new Client("localhost",18000,nom);
+        //new ListenFromServer().start();
+        //System.out.println(str);
+        //System.out.println(str);
+        //System.out.println(str);
 
-        Croisseur c=new Croisseur(0 , 0, true);
-        flotte.ajouterbateau(c,carte);
+       /* Croisseur c1=new Croisseur(0 , 0, true);
+        flotte.ajouterbateau(c1,carte);
         PorteAvion p=new PorteAvion(4, 3, true);
         flotte.ajouterbateau(p,carte);
          Escorteur e=new Escorteur(0, 9, false);
         flotte.ajouterbateau(e,carte);
         SousMarin ss = new SousMarin(9,9,true);
-        flotte.ajouterbateau(ss,carte);
+        flotte.ajouterbateau(ss,carte);*/
 
 
         jeu_Client.setTitle("Jeu - Client");
@@ -116,16 +124,40 @@ public class FrameJeuClient extends JFrame {
                 System.out.println(carte);
                 JLabel score_joueur_jlabel = new JLabel();
                 score_joueur_jlabel.setText(Integer.toString(j.getScore()));
+                c.sendMessage(nom+";"+j.getScore()+";"+carte.toString());
                 panelBas.removeAll();
                 panelBas.add(score_joueur_jlabel);
                 valAbs.setText("");
                 valOrd.setText("");
-                ;
+
 
 
             }
         });
         panelCentre.add(validationChoix);
+
+
+        boutonRaffraichissementCarte = new JButton("Raffraichissement");
+        boutonRaffraichissementCarte.setVisible(true);
+
+        boutonRaffraichissementCarte.addActionListener(new ActionListener() {
+           @Override
+           public void actionPerformed(ActionEvent e) {
+               System.out.println("Carte mise à jour : "+ c.getMessage2());
+               carte.setCarte(c.getMessage2());
+               System.out.println(carte.toString());
+               panelHaut.removeAll();
+               contentGrille.removeAll();
+               creationGrille_2(contentGrille);
+               panelHaut.add(contentGrille);
+               panelHaut.revalidate();
+
+
+           }
+       });
+        panelBas.add(boutonRaffraichissementCarte);
+     //  boutonRaffraichissementCarte.doClick();
+
 
 
 
@@ -145,7 +177,7 @@ public class FrameJeuClient extends JFrame {
 
 
 
-        System.out.println("----Client---- " + carte);
+        //System.out.println("----Client---- " + carte);
 
         carte.UpdateCarte(flotte, false);
 
@@ -181,6 +213,25 @@ public class FrameJeuClient extends JFrame {
                 contentGrille.add(cell[i][j]);
                 contentGrille.revalidate();
             }
+        }
+    }
+    class ListenFromServer extends Thread{
+        public void run() {
+            while(true) {
+
+                //str = c.getMessage2();
+                //System.out.println(str);
+//                System.out.println("XWhil"+c.getMessage2());
+                /*if(!(c.m.equals(str))){
+                    str = c.m;
+                   // boutonRaffraichissementCarte.doClick();
+                }*/
+
+            }
+        }
+
+        public  String getFromServer(){
+            return str;
         }
     }
 }

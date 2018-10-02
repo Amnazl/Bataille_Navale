@@ -22,12 +22,17 @@ public class FrameDispositionsAdmin extends JFrame{
     private Flotte flotte =new Flotte();
     private Carte2 carte  = new Carte2();
     private static String args[];
+    private Client c;
+    public static String str;
 
 
     public FrameDispositionsAdmin(){
 
-        ThreadMain threadMain = new ThreadMain();
-        threadMain.start();
+        /*ThreadMain threadMain = new ThreadMain();
+        threadMain.start();*/
+        Client c = new Client("localhost",18000,"Admin");
+
+        //new ListenFromServer().start();
 
         dispo_Admin.setTitle("Initialisation - Admin");
         dispo_Admin.setSize(650, 500);
@@ -134,6 +139,7 @@ public class FrameDispositionsAdmin extends JFrame{
                 }
 
 
+
                // JOptionPane.showMessageDialog(null,typeBateau + saisieAbs + saisieOrd + isHorizontale);
 
 
@@ -147,13 +153,13 @@ public class FrameDispositionsAdmin extends JFrame{
             public void actionPerformed(ActionEvent e)
             {
                 //Porte avion
-                flotte.coup(0,0);
+               /* flotte.coup(0,0);
                 flotte.coup(0,2);
                 //Sous-marin
                 //flotte.coup(9,9);
                 //Croisseur
                 flotte.coup(4,3);
-                flotte.coup(5,3);
+                flotte.coup(5,3);*/
                  //  flotte.coup(0,0);
                 //flotte.coup(0,2);
                 //flotte.coup(0,1);
@@ -161,11 +167,12 @@ public class FrameDispositionsAdmin extends JFrame{
                 System.out.println(carte);
                 //frameJeu_Admin(jeu_Admin);
 
-
+                c.sendMessage(carte.toString());
+              //  System.out.println("Nouvelle carte " + c.getMessage2());
                 fJeuAd = new FrameJeuAdmin(carte);
 
 
-                dispo_Admin.setVisible(false);
+                dispo_Admin.setVisible(true);
 
             }
         });
@@ -262,10 +269,20 @@ public class FrameDispositionsAdmin extends JFrame{
                 break;
 
         }
-
         return codeErreur;
 
 
+    }
+    class ListenFromServer extends Thread{
+        public void run() {
+            while(true) {
+                str = c.getMessage2();
+            }
+        }
+
+        public  String getFromServer(){
+            return str;
+        }
     }
 
 }

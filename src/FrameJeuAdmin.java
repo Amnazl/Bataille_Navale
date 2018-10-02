@@ -3,6 +3,7 @@ import esiea.Flotte;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 
 public class FrameJeuAdmin extends JFrame {
 
@@ -10,10 +11,16 @@ public class FrameJeuAdmin extends JFrame {
     private JFrame jeu_Admin = new JFrame();
     private Carte2 carte  = new Carte2();
     private Flotte flotte =new Flotte();
+    private Client c;
+    public static String str;
 
 
     public FrameJeuAdmin(Carte2 carte){
 
+      //  Client c = new Client("localhost",18000,"Admin2");
+       //new ListenFromServer().start();
+       // str = c.getMessage2();
+       // System.out.println("dernier test "+ Client.m);
         jeu_Admin.setTitle("Jeu - Admin");
         jeu_Admin.setSize(650, 500);
 
@@ -41,18 +48,36 @@ public class FrameJeuAdmin extends JFrame {
         contentGrille.setLayout(new GridLayout(10, 10));//on définit la taille de la grille de 7 sur 7
         contentGrille.setPreferredSize(new Dimension(20,20));
 
+
         creationGrille_2(contentGrille, carte);
         contentGrille.setBounds(150,150,150,150);
 
         panelHaut.add(contentGrille);
 
         ///// FIN AJOUT GRILLE //////
+       // System.out.println("Nouvelle carte " + c.getMessage2());
+       /* System.out.println("Nouvelle carte " + c.getMessage2());
+        System.out.println("Nouvelle carte " + c.getMessage2());
+        System.out.println("Nouvelle carte " + c.getMessage2());
+        System.out.println("Nouvelle carte " + c.getMessage2());*/
+
+       /* while(true){
+            if(!(str==null)){
+                if(str.contains("Carte")){
+                    System.out.println("Nouvelle carte " + str);
+                    break;
+                }
+            }
+
+        }*/
+
 
 
 
 
         jeu_Admin.add(panelHaut, BorderLayout.NORTH);
         //jeu_Admin.add(panelBas, BorderLayout.SOUTH);
+
 
         jeu_Admin.setVisible(true);
 
@@ -102,5 +127,18 @@ public class FrameJeuAdmin extends JFrame {
             }
         }
     }
+   /* class ListenFromServer extends Thread{
+        public void run() {
+            while(true) {
+               // stem.out.println("XWhil"+c.getMessage2());
+                str = c.m;
+
+            }
+        }
+
+        public  String getFromServer(){
+            return str;
+        }
+    }*/
 
 }
